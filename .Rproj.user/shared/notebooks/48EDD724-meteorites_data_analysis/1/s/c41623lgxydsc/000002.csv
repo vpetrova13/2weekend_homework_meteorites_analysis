@@ -1,0 +1,3 @@
+"0","clean_data_meteorites %>% "
+"0","  filter(value_fall == ""found"") %>% "
+"0","  summarise(avg_mass_found = mean(value_mass_g))"
