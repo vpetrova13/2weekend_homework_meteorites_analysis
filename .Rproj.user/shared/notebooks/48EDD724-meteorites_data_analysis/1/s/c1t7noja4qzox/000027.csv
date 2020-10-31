@@ -1,4 +1,0 @@
-"0","clean_data_meteorites %>%"
-"0","  select(value_name, value_mass_g, value_year) %>% "
-"0","  arrange(desc(value_mass_g))  %>% "
-"0","  slice_max(order_by = value_mass_g, n=10)"
