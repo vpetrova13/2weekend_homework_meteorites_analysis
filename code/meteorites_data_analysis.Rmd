@@ -10,7 +10,7 @@ library(janitor)
 ```
 Read clean data.
 ```{r}
-clean_data_meteorites <- source("clean_meteorites_data.R")
+clean_data_meteorites <- read_csv("../data/clean_meteorites.csv")
 ```
 ```{r}
 clean_data_meteorites
@@ -23,28 +23,28 @@ clean_data_meteorites
 10 largest meteorites.
 ```{r}
 clean_data_meteorites %>%
-  select(value_name, value_mass_g, value_year) %>% 
-  arrange(desc(value_mass_g))  %>% 
-  slice_max(order_by = value_mass_g, n=10)
+  select(name, mass_g, year) %>% 
+  arrange(desc(mass_g))  %>% 
+  slice_max(order_by = mass_g, n=10)
 ```
 Average mass of different meteorites.
 ```{r}
 clean_data_meteorites %>% 
-  filter(value_fall == "fell") %>% 
-  summarise(avg_mass_fell = mean(value_mass_g))
+  filter(fall == "fell") %>% 
+  summarise(avg_mass_fell = mean(mass_g))
 ```
 ```{r}
 clean_data_meteorites %>% 
-  filter(value_fall == "found") %>% 
-  summarise(avg_mass_found = mean(value_mass_g))
+  filter(fall == "found") %>% 
+  summarise(avg_mass_found = mean(mass_g))
 ```
 Meteorites per year since 2000.
 ```{r}
 clean_data_meteorites %>% 
-  filter(value_year >= 2000) %>% 
-  group_by(value_year) %>% 
-  summarise(total_per_year = n_distinct(value_name)) %>% 
-  arrange(value_year)
+  filter(year >= 2000) %>% 
+  group_by(year) %>% 
+  summarise(total_per_year = n_distinct(name)) %>% 
+  arrange(year)
 ```
 ```{r}
 clean_data_meteorites %>% 
@@ -54,46 +54,46 @@ Biggest meteorite found per year.
 ```{r}
 clean_data_meteorites %>% 
   drop_na() %>% 
-  filter(value_fall == "found") %>%
-  group_by(value_year) %>% 
-  summarise(big_per_year = max(value_mass_g)) %>% 
-  arrange(value_year)
+  filter(fall == "found") %>%
+  group_by(year) %>% 
+  summarise(big_per_year = max(mass_g)) %>% 
+  arrange(year)
 
 ```
 Biggest meteorite fell per year.
 ```{r}
 clean_data_meteorites %>% 
   drop_na() %>% 
-  filter(value_fall == "fell") %>%
-  group_by(value_year) %>% 
-  summarise(big_per_year = max(value_mass_g)) %>% 
-  arrange(value_year)
+  filter(fall == "fell") %>%
+  group_by(year) %>% 
+  summarise(big_per_year = max(mass_g)) %>% 
+  arrange(year)
 
 ```
 The 10 biggest meteorites.
 ```{r}
 clean_data_meteorites %>% 
   drop_na() %>% 
-  slice_max(value_mass_g, n=10) %>% 
+  slice_max(mass_g, n=10) %>% 
   arrange()
 ```
 The 10 smallest meteorites.
 ```{r}
 clean_data_meteorites %>% 
   drop_na() %>% 
-  slice_min(value_mass_g, n=10) %>% 
+  slice_min(mass_g, n=10) %>% 
   arrange()
 ```
 Median latitude and longitutde.
 ```{r}
 clean_data_meteorites %>% 
-  select(value_latitude, value_longitude) %>% 
-  summarise(lat_md = median(value_latitude), long_md = median(value_longitude)) 
+  select(latitude, longitude) %>% 
+  summarise(lat_md = median(latitude), long_md = median(longitude)) 
 
 ```
 Change g to kg.
 ```{r}
 clean_data_meteorites %>% 
-  mutate(mass_kg = value_mass_g/1000)
+  mutate(mass_kg = mass_g/1000)
 ```
 
