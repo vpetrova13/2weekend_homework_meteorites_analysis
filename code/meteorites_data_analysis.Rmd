@@ -60,7 +60,7 @@ clean_data_meteorites %>%
   arrange(year) %>% 
   ggplot() +
   aes(x = year, y = total_per_year) +
-  geom_col(fill = "sky blue") +
+  geom_col(fill = "sky blue", colour = "black") +
   theme_light() +
   labs(
     title = "Total number of meteorites per year since 2000",
@@ -142,16 +142,27 @@ clean_data_meteorites %>%
   summarise(lat_md = median(latitude), long_md = median(longitude)) 
 
 ```
-Change g to kg.
+Change g to kg and group by decades.
 ```{r}
 clean_data_meteorites %>% 
   mutate(mass_kg = mass_g/1000) %>% 
+  filter(year >= 1980) %>% 
+  mutate(decade = case_when(
+    year >= 1980 & year < 1990 ~ "1980s",
+    year >= 1990 & year < 2000 ~ "1990s",
+    year >= 2000 & year < 2010 ~ "2000s",
+    year >= 2010 & year < 2020 ~ "2010s"
+  )) %>% 
+  group_by(decade) %>% 
   ggplot() +
   geom_polygon(data = earth_map, aes(x = long, y = lat, group = group),
                fill = "grey", alpha = 0.5) +
-  geom_point(aes(x = longitude, y = latitude, color = year, size = mass_kg, 
-                 alpha = 0.3)) +
+  geom_point(aes(x = longitude, y = latitude, color = decade, size = mass_kg, alpha = 0.3)) +
   coord_cartesian() + 
-  guides(alpha = FALSE)
+  guides(alpha = FALSE) +
+  theme(legend.position = "bottom", plot.title = element_text(hjust = 0.5),
+        legend.box.background = element_rect()) +
+  guides(size = guide_legend(nrow = 2, ncol = 4),
+         colour = guide_legend(nrow = 2, ncol = 4))
 ```
 
