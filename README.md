@@ -1,11 +1,11 @@
-##Overview of the project
+## Overview of the project
 
 Data was taken from [open source NASA](https://www.kaggle.com/nasa/meteorite-landings) about meteorites that have been found up to 2013. The project can be split up into 2 sections: data cleaning up and analysis.
 The analysis of data was performed using R. 
 
-##Data cleanning or preparation prior to analysis
+##  Data cleanning or preparation prior to analysis
 
-Script for data cleaning can be found [**here**](data/clean_meteorites_data.R).
+Script for data cleaning can be found [**here**](code/clean_meteorites_data.R).
 
 	clean_meteorites_data.R
 	
@@ -20,9 +20,9 @@ Script for data cleaning can be found [**here**](data/clean_meteorites_data.R).
 * Finally, assertive programming was set up for latitude and longitude columns.
 
 
-##Meteorites data analysis
+## Meteorites data analysis
 
-Script for data analysis can be found [**here**](data/meteorites_data_analysis.Rmd).
+Script for data analysis can be found [**here**](code/meteorites_data_analysis.Rmd).
 	
 	meteorites_data_analysis.Rmd
 
@@ -37,7 +37,7 @@ Script for data analysis can be found [**here**](data/meteorites_data_analysis.R
 * Median latitude and longitutde of all meteorites. 
 * Mass of meteorites changed from grams to kilograms. 
 
-##Packages
+## Packages
 | Package | Version |
 | --------|---------|
 |tidyverse|1.3.0|
