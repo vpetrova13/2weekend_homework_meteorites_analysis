@@ -33,7 +33,7 @@ Script for data analysis can be found [**here**](code/meteorites_data_analysis.R
 * Biggest meteorite found per year. 
 * Biggest meteorite fell per year.
 * The 10 biggest meteorites over all the years.
-* The 10 smalles meteorites over all the years.
+* The 10 smallest meteorites over all the years.
 * Median latitude and longitutde of all meteorites. 
 * Mass of meteorites changed from grams to kilograms. 
 
